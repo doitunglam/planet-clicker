@@ -20,10 +20,10 @@ func _buy_effect(price: int, effectType: String, effectValue: int) -> void:
 
 func _add_point_per_second(value: int) -> void:
 	point_per_second = point_per_second + value
-	$"UI/PointGroup/Point Per Second".text = str(point_per_second)
+	$"UI/Scoreboard/Point Per Second".text = str(point_per_second)
 
 func _ready() -> void:
-	$"UI/PointGroup/Point".text = str(point)
+	$"UI/Scoreboard/Point".text = str(point)
 	_add_point_per_second(0)
 
 	$UI/Menu.connect("item_selected", _buy_effect)
@@ -36,7 +36,7 @@ func _on_planet_pressed() -> void:
 	$UI.add_child(text)
 	
 	point = point + point_per_click
-	$"UI/PointGroup/Point".text = str(point)
+	$"UI/Scoreboard/Point".text = str(point)
 
 
 func _on_timer_timeout() -> void:
@@ -44,4 +44,4 @@ func _on_timer_timeout() -> void:
 	redundant_point = increase_point - int(increase_point)
 	
 	point += int(increase_point)
-	$"UI/PointGroup/Point".text = str(point)
+	$"UI/Scoreboard/Point".text = str(point)

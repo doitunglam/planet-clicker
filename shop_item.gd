@@ -10,7 +10,7 @@ signal item_selected(item_name: String, price: int, effect_type: String, effect_
 func _ready():
 	$"Name".text = item_name
 	$"Effect".text = "Effect: " + effect_type + " " +  str(effect_value)
-	$"Price".text = "Price: " + str(effect_value)
+	$"Price".text = str(effect_value)
 
 func _on_pressed() -> void:
 	emit_signal("item_selected", item_name, price, effect_type, effect_value)

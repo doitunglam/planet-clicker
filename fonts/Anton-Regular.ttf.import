@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dipix8hoh2h1r"
-path="res://.godot/imported/RobotoMono-VariableFont_wght.ttf-c2ffee51c7f73b699c779fcb7cd714c9.fontdata"
+uid="uid://dtug3rt5gjeg0"
+path="res://.godot/imported/Anton-Regular.ttf-ce08a816c1c1502493d05365b7e93dc0.fontdata"
 
 [deps]
 
-source_file="res://fonts/RobotoMono-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/RobotoMono-VariableFont_wght.ttf-c2ffee51c7f73b699c779fcb7cd714c9.fontdata"]
+source_file="res://fonts/Anton-Regular.ttf"
+dest_files=["res://.godot/imported/Anton-Regular.ttf-ce08a816c1c1502493d05365b7e93dc0.fontdata"]
 
 [params]
 

@@ -2,13 +2,13 @@
 
 importer="font_data_dynamic"
 type="FontFile"
-uid="uid://dt6dsibghm756"
-path="res://.godot/imported/RobotoMono-Italic-VariableFont_wght.ttf-5caa75461847142e3ac5772b3147a4b8.fontdata"
+uid="uid://buhg3tnib5hj6"
+path="res://.godot/imported/Montserrat-VariableFont_wght.ttf-ff6a81e325c3b3372a4503b574abb0ec.fontdata"
 
 [deps]
 
-source_file="res://fonts/RobotoMono-Italic-VariableFont_wght.ttf"
-dest_files=["res://.godot/imported/RobotoMono-Italic-VariableFont_wght.ttf-5caa75461847142e3ac5772b3147a4b8.fontdata"]
+source_file="res://fonts/Montserrat-VariableFont_wght.ttf"
+dest_files=["res://.godot/imported/Montserrat-VariableFont_wght.ttf-ff6a81e325c3b3372a4503b574abb0ec.fontdata"]
 
 [params]
 

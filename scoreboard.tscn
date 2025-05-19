@@ -1,0 +1,45 @@
+[gd_scene load_steps=2 format=3 uid="uid://csfyjw3ysum3o"]
+
+[ext_resource type="Texture2D" uid="uid://dld500hty553i" path="res://icons/point.png" id="3_1kess"]
+
+[node name="Scoreboard" type="Node2D"]
+
+[node name="Point" type="RichTextLabel" parent="."]
+offset_left = -424.0
+offset_right = -40.0
+offset_bottom = 48.0
+theme_override_font_sizes/normal_font_size = 28
+text = "(Cookies)"
+horizontal_alignment = 2
+
+[node name="Point Icon" type="TextureRect" parent="."]
+offset_left = -40.0
+offset_right = 320.0
+offset_bottom = 496.0
+scale = Vector2(0.0965914, 0.0806888)
+texture = ExtResource("3_1kess")
+
+[node name="Point Per Second" type="RichTextLabel" parent="."]
+offset_left = -384.0
+offset_top = 48.0
+offset_right = -128.0
+offset_bottom = 80.0
+theme_override_font_sizes/normal_font_size = 20
+text = "(Cookies Per Second)"
+horizontal_alignment = 2
+
+[node name="Point Icon Small" type="TextureRect" parent="."]
+offset_left = -120.0
+offset_top = 48.0
+offset_right = 240.0
+offset_bottom = 408.0
+scale = Vector2(0.0563442, 0.0806888)
+texture = ExtResource("3_1kess")
+
+[node name="Point Per Second2" type="RichTextLabel" parent="."]
+offset_left = -96.0
+offset_top = 48.0
+offset_bottom = 80.0
+theme_override_font_sizes/normal_font_size = 20
+text = "Per Second"
+horizontal_alignment = 2
