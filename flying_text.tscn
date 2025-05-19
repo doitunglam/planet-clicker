@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://b4lcnf5oe72ay"]
+
+[ext_resource type="Script" uid="uid://b5quu058goa52" path="res://flying_text.gd" id="1_rqwaa"]
+
+[node name="FlyingText" type="Node2D"]
+z_index = 10
+script = ExtResource("1_rqwaa")
+
+[node name="Label" type="Label" parent="."]
+z_index = 10
+offset_right = 40.0
+offset_bottom = 23.0
+theme_override_font_sizes/font_size = 24
+text = "(Message)"

@@ -1,0 +1,92 @@
+[gd_scene load_steps=9 format=3 uid="uid://h0o3u535efk4"]
+
+[ext_resource type="Texture2D" uid="uid://r8dxkiylxcrq" path="res://backgrounds/main-game.png" id="1_80nbo"]
+[ext_resource type="Script" uid="uid://dxw1x2nnlptqm" path="res://game.gd" id="1_ryrav"]
+[ext_resource type="Texture2D" uid="uid://d2n2aaftguvtt" path="res://planets/earth.png" id="2_feb5d"]
+[ext_resource type="Texture2D" uid="uid://d0wi2u6dn8p0l" path="res://pressed_planets/earth.png" id="3_fc0e3"]
+[ext_resource type="FontFile" uid="uid://dipix8hoh2h1r" path="res://fonts/RobotoMono-VariableFont_wght.ttf" id="4_7jktm"]
+[ext_resource type="FontFile" uid="uid://dt6dsibghm756" path="res://fonts/RobotoMono-Italic-VariableFont_wght.ttf" id="5_ryrav"]
+[ext_resource type="Texture2D" uid="uid://dld500hty553i" path="res://icons/point.png" id="7_eow3j"]
+[ext_resource type="PackedScene" uid="uid://bwgi17ivedxr3" path="res://shop.tscn" id="8_j5wjh"]
+
+[node name="Game" type="Node2D"]
+z_index = 1
+script = ExtResource("1_ryrav")
+
+[node name="UI" type="CanvasLayer" parent="."]
+
+[node name="Bg" type="Sprite2D" parent="UI"]
+z_index = -5
+rotation = -0.0017927
+scale = Vector2(1.00509, 1.0148)
+texture = ExtResource("1_80nbo")
+centered = false
+
+[node name="Planet" type="TextureButton" parent="UI"]
+offset_left = 576.0
+offset_top = 192.0
+offset_right = 769.0
+offset_bottom = 384.0
+texture_normal = ExtResource("2_feb5d")
+texture_pressed = ExtResource("3_fc0e3")
+
+[node name="PointGroup" type="Node" parent="UI"]
+
+[node name="Point" type="RichTextLabel" parent="UI/PointGroup"]
+offset_left = 480.0
+offset_top = 16.0
+offset_right = 864.0
+offset_bottom = 56.0
+theme_override_fonts/normal_font = ExtResource("4_7jktm")
+theme_override_fonts/italics_font = ExtResource("5_ryrav")
+theme_override_font_sizes/normal_font_size = 28
+text = "(Cookies)"
+horizontal_alignment = 2
+
+[node name="Point Icon" type="TextureRect" parent="UI/PointGroup"]
+offset_left = 864.0
+offset_top = 16.0
+offset_right = 1224.0
+offset_bottom = 512.0
+scale = Vector2(0.0965914, 0.0806888)
+texture = ExtResource("7_eow3j")
+
+[node name="Point Per Second" type="RichTextLabel" parent="UI/PointGroup"]
+offset_left = 488.0
+offset_top = 64.0
+offset_right = 744.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("4_7jktm")
+theme_override_fonts/italics_font = ExtResource("5_ryrav")
+theme_override_font_sizes/normal_font_size = 20
+text = "(Cookies Per Second)"
+horizontal_alignment = 2
+
+[node name="Point Icon Small" type="TextureRect" parent="UI/PointGroup"]
+offset_left = 752.0
+offset_top = 64.0
+offset_right = 1112.0
+offset_bottom = 424.0
+scale = Vector2(0.0563442, 0.0806888)
+texture = ExtResource("7_eow3j")
+
+[node name="Point Per Second2" type="RichTextLabel" parent="UI/PointGroup"]
+offset_left = 768.0
+offset_top = 64.0
+offset_right = 896.0
+offset_bottom = 96.0
+theme_override_fonts/normal_font = ExtResource("4_7jktm")
+theme_override_fonts/italics_font = ExtResource("5_ryrav")
+theme_override_font_sizes/normal_font_size = 20
+text = "Per Second"
+horizontal_alignment = 2
+
+[node name="Menu" parent="UI" instance=ExtResource("8_j5wjh")]
+position = Vector2(32, 32)
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+autostart = true
+
+[connection signal="pressed" from="UI/Planet" to="." method="_on_planet_pressed"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
