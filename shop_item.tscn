@@ -1,9 +1,9 @@
 [gd_scene load_steps=6 format=3 uid="uid://0w6bgqho1xbv"]
 
-[ext_resource type="Texture2D" uid="uid://dy7ghsyrc3we1" path="res://backgrounds/shop-item.png" id="1_wxfep"]
+[ext_resource type="Texture2D" uid="uid://dy7ghsyrc3we1" path="res://assets/backgrounds/shop-item.png" id="1_wxfep"]
 [ext_resource type="Script" uid="uid://k4i2x5o5v5jj" path="res://shop_item.gd" id="2_wxfep"]
-[ext_resource type="Texture2D" uid="uid://dld500hty553i" path="res://icons/point.png" id="3_d8bsp"]
-[ext_resource type="FontFile" uid="uid://buhg3tnib5hj6" path="res://fonts/Montserrat-VariableFont_wght.ttf" id="3_v846v"]
+[ext_resource type="Texture2D" uid="uid://dld500hty553i" path="res://assets/icons/point.png" id="3_d8bsp"]
+[ext_resource type="FontFile" uid="uid://buhg3tnib5hj6" path="res://assets/fonts/Montserrat-VariableFont_wght.ttf" id="3_v846v"]
 
 [sub_resource type="FontVariation" id="FontVariation_v846v"]
 base_font = ExtResource("3_v846v")
@@ -49,11 +49,18 @@ theme_override_fonts/bold_font = SubResource("FontVariation_v846v")
 text = "Effect"
 
 [node name="Point Icon Small" type="TextureRect" parent="."]
+layout_mode = 0
 offset_left = 328.0
 offset_top = 48.0
 offset_right = 688.0
 offset_bottom = 408.0
 scale = Vector2(0.0563442, 0.0806888)
 texture = ExtResource("3_d8bsp")
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 296.0
+offset_right = 336.0
+offset_bottom = 40.0
 
 [connection signal="pressed" from="." to="." method="_on_pressed"]

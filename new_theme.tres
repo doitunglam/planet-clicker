@@ -1,6 +1,6 @@
 [gd_resource type="Theme" load_steps=2 format=3 uid="uid://b3udnlrusroqa"]
 
-[ext_resource type="FontFile" uid="uid://dtug3rt5gjeg0" path="res://fonts/Anton-Regular.ttf" id="1_amlv4"]
+[ext_resource type="FontFile" uid="uid://dtug3rt5gjeg0" path="res://assets/fonts/Anton-Regular.ttf" id="1_amlv4"]
 
 [resource]
 default_font = ExtResource("1_amlv4")

@@ -1,47 +1,42 @@
 extends Node2D
 
-var point = 0
-
 var redundant_point = 0
 
-var point_per_click = 1
-var point_per_second = 0
-
-func _buy_effect(price: int, effectType: String, effectValue: int) -> void:
-	if (point < price):
-		return
-	if (effectType == "passive"):
-		point -= price
-		_add_point_per_second(effectValue)
-		
-	if (effectType == "active"):
-		point -= price
-		point_per_click += effectValue
-
 func _add_point_per_second(value: int) -> void:
-	point_per_second = point_per_second + value
-	$"UI/Scoreboard/Point Per Second".text = str(point_per_second)
+	GameState._add_point_per_second(value)
 
-func _ready() -> void:
-	$"UI/Scoreboard/Point".text = str(point)
-	_add_point_per_second(0)
+func _ready() -> void:	
+	EventBus.item_purchase.connect(_on_item_purchase)
 
-	$UI/Menu.connect("item_selected", _buy_effect)
+func _on_item_purchase(item: Item) -> void:
+	var item_price = GameState.calulate_price(item)
+	
+	if (GameState.point < item_price):
+		return
+
+	GameState._add_point(-item_price)
+	GameState.add_item(item)
+
+	if (item.effect_type == "passive"):
+		_add_point_per_second(item.effect_value)
+		
+	if (item.effect_type == "active"):
+		GameState.point_per_click += item.effect_value
 
 @onready var flying_text_scene = preload("res://flying_text.tscn")
 func _on_planet_pressed() -> void:
 	var text = flying_text_scene.instantiate()
 	var mouse_pos = get_viewport().get_mouse_position()
-	text.setup("+%s" % str(point_per_click), mouse_pos)
+	text.setup("+%s" % str(GameState.point_per_click), mouse_pos)
 	$UI.add_child(text)
 	
-	point = point + point_per_click
-	$"UI/Scoreboard/Point".text = str(point)
-
-
+	GameState._add_point(GameState.point_per_click)
+	
 func _on_timer_timeout() -> void:
-	var increase_point = point_per_second * 0.1 + redundant_point
+	var increase_point = GameState.point_per_second * 0.1 + redundant_point
 	redundant_point = increase_point - int(increase_point)
 	
-	point += int(increase_point)
-	$"UI/Scoreboard/Point".text = str(point)
+	GameState._add_point(int(increase_point))
+
+func _on_planet_rotation_timer_timeout() -> void:
+	$UI/Planet.rotation_degrees += 1
