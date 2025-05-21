@@ -19,7 +19,7 @@ position = Vector2(1232, 16)
 [node name="Bg" type="Sprite2D" parent="UI"]
 z_index = -5
 rotation = -0.0017927
-scale = Vector2(1.31499, 1.02984)
+scale = Vector2(1.31499, 1.2004)
 texture = ExtResource("1_80nbo")
 centered = false
 
@@ -44,6 +44,14 @@ texture_pressed = ExtResource("3_fc0e3")
 
 [node name="Menu" parent="UI" instance=ExtResource("8_j5wjh")]
 position = Vector2(32, 32)
+
+[node name="Planet Name" type="Label" parent="UI"]
+offset_left = 776.0
+offset_top = 536.0
+offset_right = 885.0
+offset_bottom = 609.0
+theme_override_font_sizes/font_size = 48
+text = "EARTH"
 
 [node name="Score Timer" type="Timer" parent="."]
 wait_time = 0.1

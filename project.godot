@@ -23,7 +23,7 @@ GameState="*res://state/game_state.gd"
 [display]
 
 window/size/viewport_width=1250
-window/size/viewport_height=650
+window/size/viewport_height=750
 
 [gui]
 

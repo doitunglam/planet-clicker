@@ -8,14 +8,14 @@ script = ExtResource("1_6lah5")
 
 [node name="Ttitle" type="RichTextLabel" parent="."]
 offset_left = 160.0
-offset_top = 24.0
-offset_right = 224.0
-offset_bottom = 80.0
+offset_top = 8.0
+offset_right = 232.0
+offset_bottom = 64.0
 theme_override_font_sizes/normal_font_size = 32
 text = "SHOP"
-horizontal_alignment = 2
+horizontal_alignment = 1
 
 [node name="Background" type="Sprite2D" parent="."]
-position = Vector2(191, 289)
-scale = Vector2(0.201042, 0.535185)
+position = Vector2(191, 352)
+scale = Vector2(0.201042, 0.651852)
 texture = ExtResource("3_blqjs")

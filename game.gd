@@ -21,7 +21,7 @@ func _on_item_purchase(item: Item) -> void:
 		_add_point_per_second(item.effect_value)
 		
 	if (item.effect_type == "active"):
-		GameState.point_per_click += item.effect_value
+		GameState.point_per_click += int(item.effect_value)
 
 @onready var flying_text_scene = preload("res://flying_text.tscn")
 func _on_planet_pressed() -> void:

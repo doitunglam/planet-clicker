@@ -10,5 +10,5 @@ func _ready():
 func _on_point_per_second_changed(new_point_per_second) -> void:
 		$"Point Per Second".text = str(new_point_per_second)
 		
-func _on_point_changed(new_point) -> void:
+func _on_point_changed(new_point: int) -> void:
 		$"Point".text = str(new_point)
