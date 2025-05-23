@@ -8,9 +8,9 @@ script = ExtResource("1_6lah5")
 
 [node name="Ttitle" type="RichTextLabel" parent="."]
 offset_left = 160.0
-offset_top = 8.0
+offset_top = 24.0
 offset_right = 232.0
-offset_bottom = 64.0
+offset_bottom = 80.0
 theme_override_font_sizes/normal_font_size = 32
 text = "SHOP"
 horizontal_alignment = 1

@@ -51,8 +51,8 @@ texture = ExtResource("3_d8bsp")
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 296.0
-offset_right = 336.0
-offset_bottom = 40.0
+offset_right = 344.0
+offset_bottom = 48.0
 
 [node name="Disable Overlay" type="ColorRect" parent="."]
 z_index = 1
@@ -73,7 +73,6 @@ theme_override_font_sizes/normal_font_size = 20
 text = "Name"
 
 [node name="Button" type="Button" parent="."]
-visible = false
 modulate = Color(1, 1, 1, 0)
 show_behind_parent = true
 z_index = 1
