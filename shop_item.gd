@@ -1,7 +1,7 @@
 extends ColorRect
 
 var item: Item
-var price: int
+var price: float
 
 func _ready():
 	price = GameState.calulate_price(item)
@@ -11,10 +11,10 @@ func _ready():
 	$Effect.bbcode_enabled = true
 	$Icon.texture = icon
 	if item.effect_type == "passive":
-		$"Effect".parse_bbcode('produces %d [img]res://assets/icons/point_small.png[/img] per second' % item.effect_value )
+		$"Effect".parse_bbcode('produces %s [img]res://assets/icons/point_small.png[/img] per second' % GameState.format_number(item.effect_value) )
 	else:
 		$Effect.parse_bbcode("makes your click 2 times as powerfull")
-	$"Price".text = str(price)
+	$"Price".text = GameState.format_number(price)
 	EventBus.item_purchased.connect(_on_item_purchased)
 	EventBus.point_changed.connect(_on_point_changed)
 
@@ -29,7 +29,7 @@ func _on_point_changed(new_point) -> void:
 func _on_item_purchased(target_item: Item) -> void:
 	if (item.name == target_item.name):
 		price = GameState.calulate_price(item)
-		$"Price".text = str(price)
+		$"Price".text =  GameState.format_number(price)
 
 func _on_button_pressed() -> void:
 	EventBus.item_purchase.emit(item)

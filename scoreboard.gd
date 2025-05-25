@@ -8,7 +8,7 @@ func _ready():
 	EventBus.point_changed.connect(_on_point_changed)
 
 func _on_point_per_second_changed(new_point_per_second) -> void:
-		$"Point Per Second".text = str(new_point_per_second)
+		$"Point Per Second".text = GameState.format_number(new_point_per_second)
 		
-func _on_point_changed(new_point: int) -> void:
-		$"Point".text = str(new_point)
+func _on_point_changed(new_point: float) -> void:
+		$"Point".text = GameState.format_number(new_point)

@@ -54,6 +54,10 @@ texture_normal = ExtResource("7_eow3j")
 wait_time = 0.1
 autostart = true
 
+[node name="Debounce Timer" type="Timer" parent="."]
+wait_time = 0.3
+
 [connection signal="pressed" from="UI/Move To Left" to="." method="_on_move_to_left_pressed"]
 [connection signal="pressed" from="UI/Move To Right" to="." method="_on_move_to_right_pressed"]
 [connection signal="timeout" from="Score Timer" to="." method="_on_timer_timeout"]
+[connection signal="timeout" from="Debounce Timer" to="." method="_on_debounce_timer_timeout"]

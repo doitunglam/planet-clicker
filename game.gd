@@ -31,21 +31,27 @@ func _on_item_purchase(item: Item) -> void:
 	
 func _on_timer_timeout() -> void:
 	var increase_point = GameState.point_per_second * 0.1 + redundant_point
-	redundant_point = increase_point - int(increase_point)
+	redundant_point = increase_point - increase_point
 	
-	GameState._add_point(int(increase_point))
+	GameState._add_point(increase_point)
 
+var debouncing = false
 func _on_move_to_left_pressed() -> void:
-	GameState.change_planet("left")
-
+	if debouncing == false:
+		GameState.change_planet("left")
+		debouncing = true
+		$"Debounce Timer".start()
 
 func _on_move_to_right_pressed() -> void:
-	GameState.change_planet("right")
-
+	if debouncing == false:
+		GameState.change_planet("right")
+		debouncing = true
+		$"Debounce Timer".start()
+		
 func _set_planet_name() -> void:
 	$"UI/Planet Name".text = GameState.PLANETS[GameState.current_planet_index].to_upper()
 
-func _set_arrow_visibility() -> void:	
+func _set_arrow_visibility() -> void:
 	if (GameState.current_planet_index == 0):
 		$"UI/Move To Left".hide()
 		$"UI/Move To Right".show()
@@ -80,11 +86,16 @@ func _set_planet(direction: String = "") -> void:
 		tween.tween_property(planet, "position", Vector2(get_viewport().size.x + 100 if direction == "left" else -get_viewport().size.x - 100, 288), 0.2)
 		tween.tween_property(new_planet, "position", Vector2(736.0, 288.0), 0.3)
 
-		await tween.finished
-		planet.queue_free()
+		var old_planet = planet
 		planet = new_planet
+		await tween.finished
+		old_planet.queue_free()
 
 func _on_planet_changed(direction: String) -> void:
 	_set_arrow_visibility()
 	_set_planet_name()
 	_set_planet(direction)
+
+
+func _on_debounce_timer_timeout() -> void:
+	debouncing = false

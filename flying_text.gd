@@ -1,10 +1,8 @@
 extends Node2D
 
-@onready var label = $Label
 @export var text: String
-
-func setup(text: String, position: Vector2):
-	$Label.text = text
+func setup(position: Vector2):
+	$"Message".parse_bbcode('+%d[img]res://assets/icons/point_small.png[/img]' % GameState.point_per_click)
 	global_position = position
 
 	# Tween for motion + fade
