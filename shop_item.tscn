@@ -6,6 +6,7 @@
 
 [sub_resource type="FontVariation" id="FontVariation_d8bsp"]
 base_font = ExtResource("3_v846v")
+variation_embolden = 0.67
 
 [node name="ColorRect" type="ColorRect"]
 offset_right = 352.0
@@ -36,6 +37,7 @@ mouse_filter = 2
 theme_override_colors/default_color = Color(1, 1, 1, 1)
 theme_override_fonts/bold_font = SubResource("FontVariation_d8bsp")
 theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/bold_font_size = 0
 text = "Effect"
 
 [node name="Point Icon Small" type="TextureRect" parent="."]

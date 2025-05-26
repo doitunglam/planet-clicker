@@ -25,7 +25,7 @@ centered = false
 
 [node name="Menu" parent="UI" instance=ExtResource("8_j5wjh")]
 z_index = 5
-position = Vector2(32, 32)
+position = Vector2(24, 24)
 
 [node name="Planet Name" type="Label" parent="UI"]
 offset_left = 736.0

@@ -21,13 +21,13 @@ func _on_item_purchase(item: Item) -> void:
 		return
 
 	GameState._add_point(-item_price)
-	GameState.add_item(item)
 
 	if (item.effect_type == "passive"):
 		_add_point_per_second(item.effect_value)
 		
 	if (item.effect_type == "active"):
-		GameState.point_per_click += int(item.effect_value)
+		GameState.point_per_click_exp += 1
+	GameState.add_item(item)
 	
 func _on_timer_timeout() -> void:
 	var increase_point = GameState.point_per_second * 0.1 + redundant_point
@@ -76,10 +76,8 @@ func _set_planet(direction: String = "") -> void:
 		new_planet.texture_pressed = load(GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"])
 		if direction == "right":
 			new_planet.position = Vector2(get_viewport().size.x+100, 288.0)
-			#new_planet.position = Vector2(736.0, 288.0)
 		else:
 			new_planet.position = Vector2(-get_viewport().size.x-100, 288.0)
-
 		
 		var tween = create_tween()
 		$UI.add_child(new_planet)

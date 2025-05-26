@@ -1,8 +1,8 @@
 extends Node
 
-var point = 10e3
+var point = 0.0
 var redundant_point = 0.0
-var point_per_click = 1.0
+var point_per_click_exp = 0.0
 var point_per_second = 0.0
 
 var item_count: Dictionary = {}
@@ -59,7 +59,7 @@ var SHOP_ITEM_PLANET : Dictionary = {
 		Item.create("Marsian Technology", "passive", 750e6, "res://assets/planets/mars/marsian-technology.png")
 	  ],
 	"Jupiter": [
-		Item.create("Jupiter Clicker", "active", 1.14e15, "res://assets/planets/jupiter/jupiter-clicker.png"), # 1.14 quintillion
+		Item.create("Jupiter Clicker", "active", 2, "res://assets/planets/jupiter/jupiter-clicker.png"), # 1.14 quintillion
 		Item.create("Steam Engine", "passive", 5e9, "res://assets/planets/jupiter/steam-engine.png"), # 430.45 billion
 		Item.create("Hydrogen Fusion Reactor", "passive", 100e9, "res://assets/planets/jupiter/hydrogen-fusion-reactor.png"), # 264.19 trillion
 		Item.create("Helium Fusion Energy", "passive", 4.5e12, "res://assets/planets/jupiter/helium-fusion-energy.png"), # 26.94 quadrillion
@@ -67,7 +67,7 @@ var SHOP_ITEM_PLANET : Dictionary = {
 		Item.create("Thermal Radiation", "passive", 2.5e15, "res://assets/planets/jupiter/thermal-radiation.png") # 538.06 quadrillion
 	],
 	"Saturn": [
-		Item.create("Saturn Clicker", "active", 2.5e15, "res://assets/planets/saturn/saturn-clicker.png"), # 2.5 quintillion
+		Item.create("Saturn Clicker", "active", 2, "res://assets/planets/saturn/saturn-clicker.png"), # 2.5 quintillion
 		Item.create("Gas Powered Energy", "passive", 200e15, "res://assets/planets/saturn/gas-powered-energy.png"), # 40.69 quintillion
 		Item.create("Helium Mining", "passive", 10e18, "res://assets/planets/saturn/helium-mining.png"), # 1.77 sextillion
 		Item.create("Rhea Moon Mining", "passive", 750e18, "res://assets/planets/saturn/rhea-moon-mining.png"), # 17.49 sextillion
@@ -75,7 +75,7 @@ var SHOP_ITEM_PLANET : Dictionary = {
 		Item.create("Pressure Generator", "passive", 1.2e24, "res://assets/planets/saturn/pressure-generator.png") # 69.39 septillion
 	],
 	"Neptune": [
-		Item.create("Neptune Clicker", "active", 27.5e24, "res://assets/planets/neptune/neptune-clicker.png"), # 350 nonillion
+		Item.create("Neptune Clicker", "active", 2, "res://assets/planets/neptune/neptune-clicker.png"), # 350 nonillion
 		Item.create("Methane Burning", "passive", 350e24, "res://assets/planets/neptune/methane-burning.png"), # 57.5 nonillion
 		Item.create("Cyber Fusion", "passive", 8e27, "res://assets/planets/neptune/cyber-fusion.png"), # 809.11 nonillion
 		Item.create("Alien Energy", "passive", 2e30, "res://assets/planets/neptune/alien-energy.png") # 20 decillion
@@ -128,10 +128,13 @@ func _add_point_per_second(value) -> void:
 	EventBus.point_per_second_changed.emit(point_per_second)
 
 func calulate_price(item: Item) -> float:
-	if (item_count.has(item)):
-		return item.base_price * pow(1.5, item_count[item])
+	if item.effect_type == "passive":
+		if (item_count.has(item)):
+			return item.base_price * pow(1.5, item_count[item])
+		else:
+			return item.base_price
 	else:
-		return item.base_price
+		return 100 * pow(10, point_per_click_exp)
 
 func add_item(item: Item) -> void:
 	if (item_count.has(item)):

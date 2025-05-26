@@ -2,7 +2,7 @@ extends Node2D
 
 @export var text: String
 func setup(position: Vector2):
-	$"Message".parse_bbcode('+%d[img]res://assets/icons/point_small.png[/img]' % GameState.point_per_click)
+	$"Message".parse_bbcode('+%s[img]res://assets/icons/point_small.png[/img]' % GameState.format_number(pow(2, GameState.point_per_click_exp)))
 	global_position = position
 
 	# Tween for motion + fade
