@@ -2,7 +2,7 @@ extends Node2D
 
 var redundant_point = 0
 
-var planet : TextureButton
+var planet : Node2D
 
 func _add_point_per_second(value: int) -> void:
 	GameState._add_point_per_second(value)
@@ -10,6 +10,7 @@ func _add_point_per_second(value: int) -> void:
 func _ready() -> void:	
 	EventBus.item_purchase.connect(_on_item_purchase)
 	EventBus.planet_changed.connect(_on_planet_changed)
+	EventBus.planet_purchase.connect(_on_planet_purchase)
 	_set_arrow_visibility()
 	_set_planet_name()
 	_set_planet()
@@ -28,6 +29,14 @@ func _on_item_purchase(item: Item) -> void:
 	if (item.effect_type == "active"):
 		GameState.point_per_click_exp += 1
 	GameState.add_item(item)
+	
+func _on_planet_purchase(planet: String) -> void:
+	var price = GameState.PLANET_PRICE[planet]
+	if (GameState.point < price):
+		return
+	GameState._add_point(-price)
+	GameState.add_planet(planet)
+	EventBus.planet_purchased.emit(planet)
 	
 func _on_timer_timeout() -> void:
 	var increase_point = GameState.point_per_second * 0.1 + redundant_point
@@ -66,23 +75,24 @@ func _set_arrow_visibility() -> void:
 func _set_planet(direction: String = "") -> void:
 	if (planet == null):
 		planet = planet_template.instantiate()
-		planet.texture_normal = load(GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["normal"])
-		planet.texture_pressed = load(GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"])
-		planet.position = Vector2(736.0, 288.0)
+		planet.texture_normal_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["normal"]
+		planet.texture_pressed_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"]
+		planet.position = Vector2(832.0, 352.0)
 		$UI.add_child(planet)
 	else:
 		var new_planet = planet_template.instantiate()
-		new_planet.texture_normal = load(GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["normal"])
-		new_planet.texture_pressed = load(GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"])
+		new_planet.texture_normal_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["normal"]
+		new_planet.texture_pressed_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"]
+
 		if direction == "right":
-			new_planet.position = Vector2(get_viewport().size.x+100, 288.0)
+			new_planet.position = Vector2(get_viewport().size.x+100, 352.0)
 		else:
-			new_planet.position = Vector2(-get_viewport().size.x-100, 288.0)
+			new_planet.position = Vector2(-get_viewport().size.x-100, 352.0)
 		
 		var tween = create_tween()
 		$UI.add_child(new_planet)
 		tween.tween_property(planet, "position", Vector2(get_viewport().size.x + 100 if direction == "left" else -get_viewport().size.x - 100, 288), 0.2)
-		tween.tween_property(new_planet, "position", Vector2(736.0, 288.0), 0.3)
+		tween.tween_property(new_planet, "position", Vector2(832.0, 352.0), 0.3)
 
 		var old_planet = planet
 		planet = new_planet

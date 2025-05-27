@@ -7,6 +7,17 @@ var point_per_second = 0.0
 
 var item_count: Dictionary = {}
 
+var purchased_planet: Dictionary =  {}
+var PLANET_PRICE: Dictionary = {
+	"Sun": 1,
+	"Mercury": 2,
+	"Venus": 3,
+	"Earth": 4,
+	"Mars": 5,
+	"Jupiter": 6,
+	"Saturn": 7,
+	"Neptune": 8
+}
 const PLANETS = [
 	"Sun",
 	"Mercury",
@@ -143,6 +154,9 @@ func add_item(item: Item) -> void:
 		item_count.set(item, 1)
 	EventBus.item_purchased.emit(item)
 
+func add_planet(planet_name: String) -> void:
+	purchased_planet.set(planet_name, 1)	
+	
 func change_planet(direction: String) -> void:
 	if (direction == "left"):
 		if (current_planet_index == 0):

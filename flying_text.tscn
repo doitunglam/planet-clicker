@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://b5quu058goa52" path="res://flying_text.gd" id="1_rqwaa"]
 
 [node name="FlyingText" type="Node2D"]
-z_index = 10
+z_index = 4096
 script = ExtResource("1_rqwaa")
 
 [node name="Message" type="RichTextLabel" parent="."]
