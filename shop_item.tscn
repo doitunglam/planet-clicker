@@ -1,12 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://0w6bgqho1xbv"]
+[gd_scene load_steps=4 format=3 uid="uid://0w6bgqho1xbv"]
 
 [ext_resource type="Script" uid="uid://k4i2x5o5v5jj" path="res://shop_item.gd" id="2_wxfep"]
 [ext_resource type="Texture2D" uid="uid://dld500hty553i" path="res://assets/icons/point.png" id="3_d8bsp"]
-[ext_resource type="FontFile" uid="uid://buhg3tnib5hj6" path="res://assets/fonts/Montserrat-VariableFont_wght.ttf" id="3_v846v"]
 
-[sub_resource type="FontVariation" id="FontVariation_d8bsp"]
-base_font = ExtResource("3_v846v")
-variation_embolden = 0.67
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wxfep"]
 
 [node name="ColorRect" type="ColorRect"]
 z_index = 5
@@ -21,10 +18,10 @@ layout_mode = 0
 offset_left = 200.0
 offset_top = 56.0
 offset_right = 328.0
-offset_bottom = 88.0
+offset_bottom = 80.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0.960784, 0.792157, 0.34902, 1)
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 16
 text = "(Price)"
 horizontal_alignment = 2
 
@@ -32,13 +29,12 @@ horizontal_alignment = 2
 layout_mode = 0
 offset_left = 8.0
 offset_top = 40.0
-offset_right = 184.0
+offset_right = 208.0
 offset_bottom = 88.0
 mouse_filter = 2
-theme_override_colors/default_color = Color(1, 1, 1, 1)
-theme_override_fonts/bold_font = SubResource("FontVariation_d8bsp")
-theme_override_font_sizes/normal_font_size = 14
+theme_override_font_sizes/normal_font_size = 13
 theme_override_font_sizes/bold_font_size = 0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_wxfep")
 text = "Effect"
 
 [node name="Point Icon Small" type="TextureRect" parent="."]
@@ -54,8 +50,10 @@ texture = ExtResource("3_d8bsp")
 [node name="Icon" type="TextureRect" parent="."]
 layout_mode = 0
 offset_left = 296.0
-offset_right = 344.0
+offset_top = 8.0
+offset_right = 336.0
 offset_bottom = 48.0
+scale = Vector2(0.9, 0.9)
 
 [node name="Disable Overlay" type="ColorRect" parent="."]
 z_index = 1

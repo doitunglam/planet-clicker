@@ -18,7 +18,6 @@ wait_time = 0.1
 autostart = true
 
 [node name="PlanetTexture" type="TextureButton" parent="."]
-modulate = Color(1, 0, 0, 1)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -44,8 +43,16 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_mtr83")
 text = "BUY"
 
 [node name="Price" type="RichTextLabel" parent="Buy Overlay"]
-offset_right = 40.0
-offset_bottom = 40.0
+offset_left = -144.0
+offset_top = 72.0
+offset_right = 144.0
+offset_bottom = 112.0
+pivot_offset = Vector2(64, 24)
+theme_override_font_sizes/normal_font_size = 24
+text = "Price"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [connection signal="timeout" from="Planet Rotation Timer" to="." method="_on_planet_rotation_timer_timeout"]
 [connection signal="pressed" from="PlanetTexture" to="." method="_on_planet_texture_pressed"]
+[connection signal="pressed" from="Buy Overlay/Buy Button" to="." method="_on_buy_button_pressed"]

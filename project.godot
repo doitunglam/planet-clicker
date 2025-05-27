@@ -29,8 +29,3 @@ window/size/viewport_height=750
 
 theme/custom="uid://b3udnlrusroqa"
 theme/custom_font="uid://dtug3rt5gjeg0"
-
-[rendering]
-
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"

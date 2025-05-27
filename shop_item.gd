@@ -3,7 +3,9 @@ extends ColorRect
 var item: Item
 var price: float
 
+var planet_purchased = false
 func _ready():
+	planet_purchased = GameState.purchased_planet.has(GameState.PLANETS[GameState.current_planet_index])
 	price = GameState.calulate_price(item)
 	var icon = load(item.icon_path)
 
@@ -17,9 +19,13 @@ func _ready():
 	$"Price".text = GameState.format_number(price)
 	EventBus.item_purchased.connect(_on_item_purchased)
 	EventBus.point_changed.connect(_on_point_changed)
+	EventBus.planet_purchased.connect(_on_planet_purchased)
+
+func _on_planet_purchased(planet: String):
+	planet_purchased = true
 
 func _on_point_changed(new_point) -> void:
-	if new_point >= price:
+	if planet_purchased and new_point >= price:
 		$"Disable Overlay".hide()
 		$Price.add_theme_color_override("default_color", Color.YELLOW)
 	else:
