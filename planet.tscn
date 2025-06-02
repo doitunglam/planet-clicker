@@ -11,48 +11,46 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [node name="Planet" type="Node2D"]
+z_index = 2
 script = ExtResource("3_485rr")
 
 [node name="Planet Rotation Timer" type="Timer" parent="."]
 wait_time = 0.1
 autostart = true
 
-[node name="PlanetTexture" type="TextureButton" parent="."]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -96.5
-offset_top = -96.0
-offset_right = 96.5
-offset_bottom = 96.0
-grow_horizontal = 2
-grow_vertical = 2
-scale = Vector2(1.5, 1.5)
-pivot_offset = Vector2(96.4865, 95.9962)
-texture_normal = ExtResource("1_8g7i6")
-
 [node name="Buy Overlay" type="Node2D" parent="."]
+z_index = 1
 
 [node name="Buy Button" type="Button" parent="Buy Overlay"]
-offset_left = -40.0
-offset_top = 131.0
-offset_right = 40.0
-offset_bottom = 190.0
+z_index = 10
+offset_left = -56.0
+offset_top = 120.0
+offset_right = 56.0
+offset_bottom = 179.0
 theme_override_font_sizes/font_size = 28
 theme_override_styles/normal = SubResource("StyleBoxFlat_mtr83")
 text = "BUY"
 
 [node name="Price" type="RichTextLabel" parent="Buy Overlay"]
 offset_left = -144.0
-offset_top = 72.0
+offset_top = 64.0
 offset_right = 144.0
-offset_bottom = 112.0
+offset_bottom = 104.0
 pivot_offset = Vector2(64, 24)
 theme_override_font_sizes/normal_font_size = 24
 text = "Price"
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[node name="PlanetTexture" type="TextureButton" parent="."]
+offset_left = -96.0
+offset_top = -96.0
+offset_right = 97.0
+offset_bottom = 96.0
+scale = Vector2(1.5, 1.5)
+pivot_offset = Vector2(96, 96)
+texture_normal = ExtResource("1_8g7i6")
+
 [connection signal="timeout" from="Planet Rotation Timer" to="." method="_on_planet_rotation_timer_timeout"]
-[connection signal="pressed" from="PlanetTexture" to="." method="_on_planet_texture_pressed"]
 [connection signal="pressed" from="Buy Overlay/Buy Button" to="." method="_on_buy_button_pressed"]
+[connection signal="pressed" from="PlanetTexture" to="." method="_on_planet_texture_pressed"]

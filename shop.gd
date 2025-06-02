@@ -4,7 +4,7 @@ signal item_selected(item_name: String, price: int, effectType: String, effectVa
 
 @onready var item_scene = preload("res://shop_item.tscn")
 func _ready() -> void:
-	EventBus.planet_changed.connect(_on_planet_changed)
+	EventBus.planet_change.connect(_on_planet_change)
 	var current_planet = GameState.PLANETS[GameState.current_planet_index]
 	var items = GameState.SHOP_ITEM_PLANET[current_planet]
 	for i in items.size():
@@ -15,7 +15,7 @@ func _ready() -> void:
 		$"Shop Items".add_child(shop_item)
 		
 
-func _on_planet_changed(direction: String) -> void:
+func _on_planet_change(direction: String) -> void:
 	var children = $"Shop Items".get_children()
 	for child in children:
 		child.free()

@@ -1,13 +1,15 @@
 extends Node
 
 var point = 0.0
+var energy = 0
+var multiplier = 1.0
 var redundant_point = 0.0
 var point_per_click_exp = 0.0
 var point_per_second = 0.0
 
 var item_count: Dictionary = {}
 
-var highscore = 1000.0
+var highscore = 10.0
 
 var purchased_planet: Dictionary = {
 	"Earth": 1
@@ -21,6 +23,17 @@ var PLANET_PRICE: Dictionary = {
 	"Jupiter": 150e9,
 	"Saturn": 750e15,
 	"Neptune": 690e21
+}
+
+var PLANET_COLOR: Dictionary = {
+	"Sun": "#FFD965",
+	"Mercury": "#8854f6",
+	"Venus": "#C89C6C",
+	"Earth": "#2A82F2",
+	"Mars": "#C64A42",
+	"Jupiter": "#F28C28",
+	"Saturn": "#FFA52F",
+	"Neptune": "#7B9E99"
 }
 const PLANETS = [
 	"Sun",
@@ -138,6 +151,10 @@ func _add_point(value) -> void:
 	point += value
 	EventBus.point_changed.emit(point)
 
+func _add_energy(value) -> void:
+	energy += value
+	EventBus.energy_changed.emit()
+
 func _add_point_per_second(value) -> void:
 	point_per_second += value
 	EventBus.point_per_second_changed.emit(point_per_second)
@@ -168,13 +185,13 @@ func change_planet(direction: String) -> void:
 			return
 		else:
 			current_planet_index -= 1
-			EventBus.planet_changed.emit(direction)
+			EventBus.planet_change.emit(direction)
 	else:
 		if (current_planet_index == PLANETS.size()-1):
 			return
 		else:
 			current_planet_index += 1
-			EventBus.planet_changed.emit(direction)
+			EventBus.planet_change.emit(direction)
 
 # Converts a number to a short format with suffix (e.g., 1_000_000 => "1M")
 func format_number(n: float) -> String:
@@ -211,3 +228,11 @@ func format_number(n: float) -> String:
 		return str(int(value)) + " " + suffixes[exponent]
 	else:
 		return str(round(value * 100.0) / 100.0) + " " + suffixes[exponent]
+
+func set_mulitplier(new_multiplier: float):
+	multiplier = new_multiplier
+	EventBus.multiplier_changed.emit()
+	await get_tree().create_timer(30.0).timeout
+	multiplier = 1.0
+	EventBus.multiplier_changed.emit()
+	

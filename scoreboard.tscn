@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://csfyjw3ysum3o"]
+[gd_scene load_steps=4 format=3 uid="uid://csfyjw3ysum3o"]
 
 [ext_resource type="Script" uid="uid://dn56lha7qcfdw" path="res://scoreboard.gd" id="1_vug2y"]
 [ext_resource type="Texture2D" uid="uid://dld500hty553i" path="res://assets/icons/point.png" id="3_1kess"]
+[ext_resource type="Texture2D" uid="uid://b3b5yxb5ye2to" path="res://assets/icons/energy.png" id="3_pv1yx"]
 
 [node name="Scoreboard" type="Node2D"]
 script = ExtResource("1_vug2y")
@@ -44,4 +45,18 @@ offset_top = 48.0
 offset_bottom = 80.0
 theme_override_font_sizes/normal_font_size = 20
 text = "Per Second"
+horizontal_alignment = 2
+
+[node name="Energy" type="Sprite2D" parent="."]
+position = Vector2(-16, 104)
+scale = Vector2(1.875, 1.875)
+texture = ExtResource("3_pv1yx")
+
+[node name="Energy Count" type="RichTextLabel" parent="."]
+offset_left = -424.0
+offset_top = 88.0
+offset_right = -40.0
+offset_bottom = 136.0
+theme_override_font_sizes/normal_font_size = 28
+text = "(Cookies)"
 horizontal_alignment = 2

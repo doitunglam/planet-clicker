@@ -3,6 +3,8 @@ extends Node2D
 @export var texture_normal_link: String = ''
 @export var texture_pressed_link: String =  ''
 @export var planet_name: String = ''
+@export var planet_color: String = ''
+
 
 var price: float
 
@@ -14,6 +16,9 @@ func _ready() -> void:
 		$PlanetTexture.texture_pressed = load(texture_pressed_link)
 	if planet_name != '':
 		$"Buy Overlay/Price".parse_bbcode('%s[img]res://assets/icons/point_small.png[/img]' % GameState.format_number(price))
+	
+	var planet_background = preload("res://planet_background.tscn").instantiate()
+	add_child(planet_background)
 
 	if GameState.purchased_planet.has(planet_name):
 		_unset_buy_overlay()
@@ -48,5 +53,18 @@ func _on_planet_texture_pressed() -> void:
 
 func _on_buy_button_pressed() -> void:
 	if GameState.point > price:
+		GameState._add_point(-price)
 		GameState.add_planet(planet_name)
+		var buy_sound = preload("res://assets/sounds/cha_ching.mp3")
+		play_sound_effect(buy_sound)
 		_unset_buy_overlay()
+
+func play_sound_effect(stream: AudioStream):
+	var player = AudioStreamPlayer.new()
+	player.stream = stream
+	player.bus = "Sound Effect"
+	add_child(player)
+	player.volume_db = -20
+	player.play()
+	# Free the player after the sound finishes
+	player.connect("finished", player.queue_free)

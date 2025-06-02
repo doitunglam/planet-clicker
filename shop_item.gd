@@ -8,10 +8,9 @@ func _ready():
 	planet_purchased = GameState.purchased_planet.has(GameState.PLANETS[GameState.current_planet_index])
 	price = GameState.calulate_price(item)
 	var icon = load(item.icon_path)
-
 	$"Name".text = item.name
 	$Effect.bbcode_enabled = true
-	$Icon.texture = icon
+	$"Icon Background/Icon".texture = icon
 	if item.effect_type == "passive":
 		$"Effect".parse_bbcode('produces %s [img]res://assets/icons/point_small.png[/img] per second' % GameState.format_number(item.effect_value) )
 	else:
@@ -24,6 +23,7 @@ func _ready():
 func _on_planet_purchased(planet: String):
 	planet_purchased = true
 
+# Change into purchase force (combination of point and energy)
 func _on_point_changed(new_point) -> void:
 	if planet_purchased and new_point >= price:
 		$"Disable Overlay".hide()
@@ -44,4 +44,5 @@ func _on_item_purchased(target_item: Item) -> void:
 			$Price.add_theme_color_override("default_color", Color.RED)
 		
 func _on_button_pressed() -> void:
-	EventBus.item_purchase.emit(item)
+	if planet_purchased and GameState.point >= price:
+		EventBus.item_purchase.emit(item)
