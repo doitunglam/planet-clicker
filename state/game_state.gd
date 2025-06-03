@@ -1,7 +1,7 @@
 extends Node
 
 var point = 0.0
-var energy = 0
+var energy : int = 0
 var multiplier = 1.0
 var redundant_point = 0.0
 var point_per_click_exp = 0.0
@@ -159,21 +159,32 @@ func _add_point_per_second(value) -> void:
 	point_per_second += value
 	EventBus.point_per_second_changed.emit(point_per_second)
 
-func calulate_price(item: Item) -> float:
+# The first one is the point value
+# Second one is the bonus energy value
+# Third one is available (true/false)
+# 1 energy = 5w worth of point or 100_000 (choose larger)
+func calulate_price(item: Item) -> Array:
+	var price 
 	if item.effect_type == "passive":
 		if (item_count.has(item)):
-			return item.base_price * pow(1.5, item_count[item])
+			price = item.base_price * pow(1.5, item_count[item])
 		else:
-			return item.base_price
+			price = item.base_price
 	else:
-		return 100 * pow(10, point_per_click_exp)
-
-func add_item(item: Item) -> void:
-	if (item_count.has(item)):
-		item_count[item] += 1
+		price = 100 * pow(10, point_per_click_exp)
+	if price < point:
+		return [price, 0, true]
 	else:
-		item_count.set(item, 1)
-	EventBus.item_purchased.emit(item)
+		if energy > 0:
+			var converted_to_point = max(1e6, price*0.15)
+			var remaining = price - point
+			var energy_needed = ceil(remaining / converted_to_point)
+			if energy_needed > energy:
+				return [price, 0, false]
+			else:
+				return [point, energy_needed, true]
+		else:
+			return [price, 0, false]
 
 func add_planet(planet_name: String) -> void:
 	purchased_planet.set(planet_name, 1)
@@ -235,4 +246,10 @@ func set_mulitplier(new_multiplier: float):
 	await get_tree().create_timer(30.0).timeout
 	multiplier = 1.0
 	EventBus.multiplier_changed.emit()
-	
+
+func add_item(item: Item) -> void:
+	if (item_count.has(item)):
+		item_count[item] += 1
+	else:
+		item_count.set(item, 1)
+	EventBus.item_purchased.emit(item)

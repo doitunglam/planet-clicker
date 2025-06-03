@@ -35,13 +35,9 @@ func _on_point_changed(point: float):
 		await get_tree().create_timer(5.0).timeout
 		firework.queue_free()
 
-func _on_item_purchase(item: Item) -> void:
-	var item_price = GameState.calulate_price(item)
-	
-	if (GameState.point < item_price):
-		return
-
-	GameState._add_point(-item_price)
+func _on_item_purchase(item: Item, price: Array) -> void:
+	GameState._add_point(-price[0])
+	GameState._add_energy(-price[1])
 	
 	var buy_sound = preload("res://assets/sounds/cha_ching.mp3")
 	play_sound_effect(buy_sound)

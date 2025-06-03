@@ -5,7 +5,7 @@ signal point_changed(new_point: float)
 signal point_per_second_changed(new_point_per_second: float)
 
 # Item signals
-signal item_purchase(item: Item)
+signal item_purchase(item: Item, price: Array)
 signal item_purchased(item: Item)
 
 # Planet signals
