@@ -22,13 +22,10 @@ GameState="*res://state/game_state.gd"
 
 [display]
 
-window/size/viewport_width=1250
-window/size/viewport_height=750
-window/stretch/mode="viewport"
-
-[editor_plugins]
-
-enabled=PackedStringArray("res://addons/applovin_max/plugin.cfg")
+window/size/viewport_width=1280
+window/size/viewport_height=720
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [gui]
 

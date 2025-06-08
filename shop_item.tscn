@@ -22,7 +22,7 @@ modulate_color = Color(0.41, 0.41, 0.41, 1)
 [node name="ColorRect" type="ColorRect"]
 z_index = 5
 offset_right = 352.0
-offset_bottom = 88.0
+offset_bottom = 80.0
 color = Color(0.2, 0.2, 0.2, 1)
 script = ExtResource("2_wxfep")
 
@@ -43,11 +43,11 @@ horizontal_alignment = 2
 [node name="Effect" type="RichTextLabel" parent="."]
 layout_mode = 0
 offset_left = 8.0
-offset_top = 40.0
+offset_top = 32.0
 offset_right = 208.0
-offset_bottom = 88.0
+offset_bottom = 80.0
 mouse_filter = 2
-theme_override_font_sizes/normal_font_size = 13
+theme_override_font_sizes/normal_font_size = 12
 theme_override_font_sizes/bold_font_size = 0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_wxfep")
 text = "Effect"
@@ -81,7 +81,7 @@ visible = false
 z_index = 10
 layout_mode = 0
 offset_right = 352.0
-offset_bottom = 88.0
+offset_bottom = 80.0
 mouse_force_pass_scroll_events = false
 color = Color(0, 0, 0, 0.705882)
 
@@ -93,7 +93,7 @@ offset_right = 272.0
 offset_bottom = 40.0
 mouse_filter = 2
 theme_override_colors/default_color = Color(0, 0.8, 1, 1)
-theme_override_font_sizes/normal_font_size = 18
+theme_override_font_sizes/normal_font_size = 16
 text = "Name"
 
 [node name="Button" type="Button" parent="."]
@@ -102,6 +102,6 @@ show_behind_parent = true
 z_index = 1
 layout_mode = 0
 offset_right = 352.0
-offset_bottom = 88.0
+offset_bottom = 80.0
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

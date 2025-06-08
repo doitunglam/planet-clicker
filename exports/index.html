@@ -13,6 +13,7 @@ html, body, #canvas {
 
 body {
 	color: white;
+	background-color: black;
 	overflow: hidden;
 	touch-action: none;
 }
@@ -94,7 +95,7 @@ body {
 
 	</head>
 	<body>
-		<canvas id="canvas" style="width: 1000px; height: 750px;">
+		<canvas id="canvas">
 			Your browser does not support the canvas tag.
 		</canvas>
 
@@ -110,7 +111,7 @@ body {
 
 		<script src="index.js"></script>
 		<script>
-const GODOT_CONFIG = {"args":[],"canvasResizePolicy":1,"ensureCrossOriginIsolationHeaders":true,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":5126512,"index.wasm":52126319},"focusCanvas":false,"gdextensionLibs":[]};
+const GODOT_CONFIG = {"args":[],"canvasResizePolicy":2,"ensureCrossOriginIsolationHeaders":false,"executable":"index","experimentalVK":false,"fileSizes":{"index.pck":5126368,"index.wasm":43699190},"focusCanvas":false,"gdextensionLibs":[]};
 const GODOT_THREADS_ENABLED = false;
 const engine = new Engine(GODOT_CONFIG);
 
@@ -216,5 +217,4 @@ const engine = new Engine(GODOT_CONFIG);
 		</script>
 	</body>
 </html>
-
 

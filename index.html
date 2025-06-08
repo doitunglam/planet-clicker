@@ -1,6 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<script type="text/javascript">
+   window.SDK_OPTIONS = {
+      gameId: "m1aw00noqyzvnoow9thx843utgw5ik6d",
+      onEvent: function (a) {
+         switch (a.name) {
+            case "SDK_GAME_PAUSE":
+               // pause game logic / mute audio
+               break;
+            case "SDK_GAME_START":
+               // advertisement done, resume game logic and unmute audio
+               break;
+            case "SDK_READY":
+               // when sdk is ready
+               break;
+         }
+      }
+   };
+(function (a, b, c) {
+   var d = a.getElementsByTagName(b)[0];
+   a.getElementById(c) || (a = a.createElement(b), a.id = c, a.src = "https://api.gamemonetize.com/sdk.js", d.parentNode.insertBefore(a, d))
+})(document, "script", "gamemonetize-sdk"); 
+</script>
+		<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7418705411302029"
+     crossorigin="anonymous"></script>
+	 <meta name="monetag" content="9f7f6a251a40bbd8149f5a1dedcf281b">
+	 <script>(function(d,z,s){s.src='https://'+d+'/401/'+z;try{(document.body||document.documentElement).appendChild(s)}catch(e){}})('groleegni.net',9426719,document.createElement('script'))</script>
 		<meta charset="utf-8">
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
 		<title>Planet Clicker</title>
@@ -95,7 +121,7 @@ body {
 
 	</head>
 	<body>
-		<canvas id="canvas" style="width: 1250px; height: 750px;">
+		<canvas id="canvas">
 			Your browser does not support the canvas tag.
 		</canvas>
 

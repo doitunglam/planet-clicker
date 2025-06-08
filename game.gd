@@ -13,6 +13,7 @@ func _ready() -> void:
 	EventBus.planet_clicked.connect(_on_planet_texture_pressed)
 	EventBus.point_changed.connect(_on_point_changed)
 	EventBus.multiplier_changed.connect(_on_multiplier_changed)
+	
 	_set_arrow_visibility()
 	_set_planet_name()
 	_set_planet()
@@ -30,7 +31,6 @@ func _on_point_changed(point: float):
 		GameState.highscore *= 10
 		var timer = Timer.new()
 		var firework = preload("res://fireworks.tscn").instantiate()
-		GameState.highscore = GameState.highscore * 10
 		$"./UI".add_child(firework)
 		await get_tree().create_timer(5.0).timeout
 		firework.queue_free()
@@ -89,7 +89,7 @@ func _set_planet(direction: String = "") -> void:
 		planet.planet_color = GameState.PLANET_COLOR[GameState.PLANETS[GameState.current_planet_index]]
 		planet.texture_normal_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["normal"]
 		planet.texture_pressed_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"]
-		planet.position = Vector2(832.0, 352.0)
+		planet.position = Vector2(832.0, 340.0)
 		$UI.add_child(planet)
 	else:
 		var new_planet = planet_template.instantiate()
@@ -99,14 +99,14 @@ func _set_planet(direction: String = "") -> void:
 		new_planet.texture_pressed_link = GameState.PLANET_IMG[GameState.PLANETS[GameState.current_planet_index]]["pressed"]
 
 		if direction == "right":
-			new_planet.position = Vector2(get_viewport().size.x+200, 352.0)
+			new_planet.position = Vector2(get_viewport().size.x+200, 340.0)
 		else:
-			new_planet.position = Vector2(-get_viewport().size.x-200, 352.0)
+			new_planet.position = Vector2(-get_viewport().size.x-200, 340.0)
 		
 		var tween = create_tween()
 		$UI.add_child(new_planet)
-		tween.tween_property(planet, "position", Vector2(get_viewport().size.x + 200 if direction == "left" else -get_viewport().size.x - 200, 352), 0.2)
-		tween.tween_property(new_planet, "position", Vector2(832.0, 352.0), 0.3)
+		tween.tween_property(planet, "position", Vector2(get_viewport().size.x + 200 if direction == "left" else -get_viewport().size.x - 200, 340), 0.2)
+		tween.tween_property(new_planet, "position", Vector2(832.0, 340.0), 0.3)
 
 		var old_planet = planet
 		planet = new_planet
@@ -175,3 +175,10 @@ func _on_multiplier_changed() -> void:
 	else:
 		tween.tween_property(label, "modulate:a", 1.0, 0.6)  # Fade in over 0.3s
 		label.show()
+		
+		
+var is_paused = false
+
+func _toggle_pause():
+	is_paused = not is_paused
+	get_tree().paused = is_paused

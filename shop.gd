@@ -11,7 +11,7 @@ func _ready() -> void:
 		var item = items[i]
 		var shop_item = item_scene.instantiate()
 		shop_item.item = item
-		shop_item.position = Vector2(16, 80 + i * 104)
+		shop_item.position = Vector2(16, 64 + i * 86)
 		$"Shop Items".add_child(shop_item)
 		
 
@@ -25,5 +25,5 @@ func _on_planet_change(direction: String) -> void:
 		var item = items[i]
 		var shop_item = item_scene.instantiate()
 		shop_item.item = item
-		shop_item.position = Vector2(16, 80 + i * 104)
+		shop_item.position = Vector2(16, 64 + i * 86)
 		$"Shop Items".add_child(shop_item)
