@@ -12,13 +12,14 @@ config_version=5
 
 config/name="Planet Clicker"
 run/main_scene="uid://h0o3u535efk4"
-config/features=PackedStringArray("4.4", "GL Compatibility")
+config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [autoload]
 
 EventBus="*res://EventBus.gd"
 GameState="*res://state/game_state.gd"
+_Capture="*res://_capture.gd"
 
 [display]
 
@@ -36,3 +37,4 @@ theme/custom_font="uid://dtug3rt5gjeg0"
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/vram_compression/import_etc2_astc=true
