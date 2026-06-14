@@ -1,6 +1,6 @@
 extends Node
 
-var point = 0.0
+var point = 1e40
 var energy : int = 0
 var multiplier = 1.0
 var redundant_point = 0.0
